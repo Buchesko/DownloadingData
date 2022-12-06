@@ -1,0 +1,28 @@
+import csv
+
+import matplotlib.pyplot as plt
+
+filename = 'Files/sitka_weather_07-2018_simple.csv'
+with open(filename) as file:
+    reader = csv.reader(file)
+    header_row = next(reader)
+    # Build the index of each column
+    # for index, column_header in enumerate(header_row):
+    #     print(index, column_header)
+    highs = []
+    for row in reader:
+        high = int(row[5])
+        highs.append(high)
+
+# plot the high temperatures.
+plt.style.use('dark_background')
+fig, ax = plt.subplots()
+ax.plot(highs, c='red')
+
+# Format plot.
+ax.set_title("Daily high temperatures, July 2018", fontsize=24)
+ax.set_xlabel('', fontsize=16)
+ax.set_ylabel("Temperature(F)", fontsize=26)
+ax.tick_params(axis='both', which='major', labelsize=16)
+
+plt.show()
